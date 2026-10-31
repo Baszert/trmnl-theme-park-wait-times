@@ -1,0 +1,34 @@
+{%- if qc.status == "open" -%}
+<div class="layout layout--col layout--stretch-x qc">
+  <div class="qc-w qc-grow">
+    <div class="qc-tb"><span class="qc-cb">X</span><span class="qc-t">{{ park_name }}</span></div>
+    <div class="qc-body">
+      <div class="qc-split">
+    <div class="qc-page qc-gr">
+      {%- assign variants = "o,x,p,m" | split: "," -%}{%- for v in variants -%}
+      {%- if v == "o" -%}{%- assign tk = qc.tracks.hh.o -%}{%- elsif v == "x" -%}{%- assign tk = qc.tracks.hh.x -%}{%- elsif v == "p" -%}{%- assign tk = qc.tracks.hh.p -%}{%- else -%}{%- assign tk = qc.tracks.hh.m -%}{%- endif -%}
+      <svg class="qc-svg qc-{{ v }}" preserveAspectRatio="none" viewBox="0 0 {{ tk.w }} {{ tk.h }}">
+        {%- for t in tk.ticks -%}<line class="qc-grid" x1="{{ tk.padl }}" x2="{{ tk.w }}" y1="{{ t.y }}" y2="{{ t.y }}"/>{%- if tk.h > 100 -%}<text class="qc-ax" x="{{ tk.padl | minus: 7 }}" y="{{ t.y | plus: 4 }}" text-anchor="end">{{ t.v }}</text>{%- endif -%}{%- endfor -%}
+        {%- for b in tk.bars -%}<rect class="qc-col{% if b.top == 1 %} qc-col--top{% endif %}" x="{{ b.x }}" y="{{ b.y }}" width="{{ tk.bw }}" height="{{ b.h }}" rx="{{ tk.rx }}"/>{%- if b.lab == 1 -%}<text class="qc-bv" x="{{ b.cx }}" y="{{ b.y | minus: 5 }}" text-anchor="middle">{{ b.v }}</text>{%- endif -%}{%- endfor -%}
+        <line class="qc-avg" x1="{{ tk.padl }}" x2="{{ tk.w }}" y1="{{ tk.avg }}" y2="{{ tk.avg }}"/>
+        {%- if tk.h > 100 -%}<g transform="translate({{ tk.w | minus: 70 }},{{ tk.avg | minus: 12 }})"><rect class="qc-avgbox" width="64" height="24" rx="3"/><text class="qc-avgt" x="32" y="17.5" text-anchor="middle">avg {{ tk.avgv }}</text></g>{%- endif -%}
+      </svg>
+      {%- endfor -%}
+    </div>
+    <div class="qc-right">
+      <div class="qc-page qc-list qc-grow">
+      {%- for r in qc.top limit: 8 -%}
+      <div class="qc-row qc-row--{{ r.heat }}{% if r.rank == 1 %} qc-row--sel{% endif %}{% if forloop.index > 99 %} qc-pxonly{% elsif forloop.index > 5 %} qc-xonly{% endif %}">
+        <span class="qc-rn qc-clip qc-grow">{{ r.n }}</span>
+        <span class="qc-qbox qc-qbox--s">{%- if r.q > 0 -%}{%- assign qn = r.q | at_most: 5 -%}{%- assign qw = qn | times: 14 -%}<svg class="qc-q" viewBox="0 0 {{ qw }} 17">{%- for i in (1..qn) -%}{%- assign gi = i | times: 3 | plus: r.rank | modulo: 8 | plus: 1 -%}<use href="#qc-g{{ gi }}" x="{{ i | minus: 1 | times: 14 }}"/>{%- endfor -%}</svg>{%- else -%}<span class="qc-s">walk-on</span>{%- endif -%}</span>
+        <span class="qc-min">{{ r.w }}</span>
+      </div>
+      {%- endfor -%}
+    </div></div>
+      </div>
+    </div>
+  </div>
+</div>
+{%- else -%}
+<div class="layout layout--col layout--stretch-x qc">{{ empty_screen }}</div>
+{%- endif -%}

@@ -1,0 +1,194 @@
+{
+  "id": "30713cf6-69a9-47c9-a505-52bb965f01be",
+  "name": "Efteling",
+  "entityType": "PARK",
+  "timezone": "Europe/Amsterdam",
+  "schedule": [
+    {
+      "date": "2026-10-26",
+      "type": "OPERATING",
+      "closingTime": "2026-10-26T19:00:00+01:00",
+      "openingTime": "2026-10-26T10:00:00+01:00"
+    },
+    {
+      "date": "2026-10-27",
+      "type": "OPERATING",
+      "closingTime": "2026-10-27T19:00:00+01:00",
+      "openingTime": "2026-10-27T10:00:00+01:00"
+    },
+    {
+      "date": "2026-10-28",
+      "type": "OPERATING",
+      "closingTime": "2026-10-28T19:00:00+01:00",
+      "openingTime": "2026-10-28T10:00:00+01:00"
+    },
+    {
+      "date": "2026-10-29",
+      "type": "OPERATING",
+      "closingTime": "2026-10-29T19:00:00+01:00",
+      "openingTime": "2026-10-29T10:00:00+01:00"
+    },
+    {
+      "date": "2026-10-30",
+      "type": "OPERATING",
+      "closingTime": "2026-10-30T19:00:00+01:00",
+      "openingTime": "2026-10-30T10:00:00+01:00"
+    },
+    {
+      "date": "2026-10-31",
+      "type": "OPERATING",
+      "closingTime": "2026-10-31T20:00:00+01:00",
+      "openingTime": "2026-10-31T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-01",
+      "type": "OPERATING",
+      "closingTime": "2026-11-01T20:00:00+01:00",
+      "openingTime": "2026-11-01T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-02",
+      "type": "OPERATING",
+      "closingTime": "2026-11-02T20:00:00+01:00",
+      "openingTime": "2026-11-02T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-03",
+      "type": "OPERATING",
+      "closingTime": "2026-11-03T20:00:00+01:00",
+      "openingTime": "2026-11-03T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-04",
+      "type": "OPERATING",
+      "closingTime": "2026-11-04T20:00:00+01:00",
+      "openingTime": "2026-11-04T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-05",
+      "type": "OPERATING",
+      "closingTime": "2026-11-05T20:00:00+01:00",
+      "openingTime": "2026-11-05T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "OPERATING",
+      "closingTime": "2026-11-06T20:00:00+01:00",
+      "openingTime": "2026-11-06T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-07",
+      "type": "OPERATING",
+      "closingTime": "2026-11-07T20:00:00+01:00",
+      "openingTime": "2026-11-07T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-08",
+      "type": "OPERATING",
+      "closingTime": "2026-11-08T20:00:00+01:00",
+      "openingTime": "2026-11-08T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-09",
+      "type": "OPERATING",
+      "closingTime": "2026-11-09T18:00:00+01:00",
+      "openingTime": "2026-11-09T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-10",
+      "type": "OPERATING",
+      "closingTime": "2026-11-10T18:00:00+01:00",
+      "openingTime": "2026-11-10T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-11",
+      "type": "OPERATING",
+      "closingTime": "2026-11-11T19:00:00+01:00",
+      "openingTime": "2026-11-11T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-12",
+      "type": "OPERATING",
+      "closingTime": "2026-11-12T18:00:00+01:00",
+      "openingTime": "2026-11-12T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-13",
+      "type": "OPERATING",
+      "closingTime": "2026-11-13T18:00:00+01:00",
+      "openingTime": "2026-11-13T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-14",
+      "type": "OPERATING",
+      "closingTime": "2026-11-14T20:00:00+01:00",
+      "openingTime": "2026-11-14T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-15",
+      "type": "OPERATING",
+      "closingTime": "2026-11-15T20:00:00+01:00",
+      "openingTime": "2026-11-15T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-16",
+      "type": "OPERATING",
+      "closingTime": "2026-11-16T18:00:00+01:00",
+      "openingTime": "2026-11-16T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-17",
+      "type": "OPERATING",
+      "closingTime": "2026-11-17T18:00:00+01:00",
+      "openingTime": "2026-11-17T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-18",
+      "type": "OPERATING",
+      "closingTime": "2026-11-18T18:00:00+01:00",
+      "openingTime": "2026-11-18T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-19",
+      "type": "OPERATING",
+      "closingTime": "2026-11-19T18:00:00+01:00",
+      "openingTime": "2026-11-19T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-20",
+      "type": "OPERATING",
+      "closingTime": "2026-11-20T18:00:00+01:00",
+      "openingTime": "2026-11-20T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-21",
+      "type": "OPERATING",
+      "closingTime": "2026-11-21T19:00:00+01:00",
+      "openingTime": "2026-11-21T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-22",
+      "type": "OPERATING",
+      "closingTime": "2026-11-22T19:00:00+01:00",
+      "openingTime": "2026-11-22T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-23",
+      "type": "OPERATING",
+      "closingTime": "2026-11-23T18:00:00+01:00",
+      "openingTime": "2026-11-23T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-24",
+      "type": "OPERATING",
+      "closingTime": "2026-11-24T18:00:00+01:00",
+      "openingTime": "2026-11-24T10:00:00+01:00"
+    },
+    {
+      "date": "2026-11-25",
+      "type": "OPERATING",
+      "closingTime": "2026-11-25T18:00:00+01:00",
+      "openingTime": "2026-11-25T10:00:00+01:00"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+# TRMNLP configuration
+---
+watch:
+  - .trmnlp.yml
+  - src
+
+custom_fields:
+  park: 160~Efteling~30713cf6-69a9-47c9-a505-52bb965f01be
+
+variables:
+  trmnl:
+    user:
+      locale: en
+      utc_offset: 3600
+    plugin_settings:
+      instance_name: Theme Park Wait Times

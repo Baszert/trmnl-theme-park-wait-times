@@ -1,0 +1,37 @@
+{%- if qc.status == "open" -%}
+<div class="layout layout--col layout--stretch-x qc">
+  <div class="qc-w qc-grow">
+    <div class="qc-tb"><span class="qc-cb">X</span><span class="qc-t">{{ park_name }}</span><span class="qc-cap">Powered by Queue-Times.com</span></div>
+    <div class="qc-body">
+      <fieldset class="qc-grp"><legend>Crowd</legend><div class="qc-gi">{{ ic_arch }}<div class="qc-page qc-gauge">{{ gauge }}</div><span class="qc-btn qc-t">{{ qc.level }}</span><span class="qc-grow"></span><span class="qc-s"><span class="qc-live"></span>{{ upd_l | date: "%H:%M" }} · {{ qc.open }}/{{ qc.total }} open · {% if qc.closes != "" %}until {{ qc.closes }} · {% endif %}avg {{ qc.avg }} min</span></div>{%- if qc.day -%}<div class="qc-day"><span class="qc-s">{{ qc.day.from }}</span><div class="qc-page qc-bar"><svg class="qc-barsvg" viewBox="0 0 100 10" preserveAspectRatio="none"><rect class="qc-barfill" width="{{ qc.day.pct }}" height="10"/><rect class="qc-barmark" x="{{ qc.day.pct | minus: 0.5 }}" width="1" height="10"/></svg></div><span class="qc-s">{{ qc.day.to }}</span><span class="qc-s qc-left">{{ qc.day.left }}</span></div>{%- endif -%}</fieldset>
+      <fieldset class="qc-grp qc-news"><legend>Guest says</legend><div class="qc-gi">{{ ic_face }}<span class="qc-t">{{ qc.thought }}</span></div></fieldset>
+      <div class="qc-split">
+    <fieldset class="qc-grp qc-gfs"><legend>Queue lengths</legend><div class="qc-page qc-gr">
+      {%- assign variants = "o,x,p,m" | split: "," -%}{%- for v in variants -%}
+      {%- if v == "o" -%}{%- assign tk = qc.tracks.full.o -%}{%- elsif v == "x" -%}{%- assign tk = qc.tracks.full.x -%}{%- elsif v == "p" -%}{%- assign tk = qc.tracks.full.p -%}{%- else -%}{%- assign tk = qc.tracks.full.m -%}{%- endif -%}
+      <svg class="qc-svg qc-{{ v }}" preserveAspectRatio="none" viewBox="0 0 {{ tk.w }} {{ tk.h }}">
+        {%- for t in tk.ticks -%}<line class="qc-grid" x1="{{ tk.padl }}" x2="{{ tk.w }}" y1="{{ t.y }}" y2="{{ t.y }}"/>{%- if tk.h > 100 -%}<text class="qc-ax" x="{{ tk.padl | minus: 7 }}" y="{{ t.y | plus: 4 }}" text-anchor="end">{{ t.v }}</text>{%- endif -%}{%- endfor -%}
+        {%- for b in tk.bars -%}<rect class="qc-col{% if b.top == 1 %} qc-col--top{% endif %}" x="{{ b.x }}" y="{{ b.y }}" width="{{ tk.bw }}" height="{{ b.h }}" rx="{{ tk.rx }}"/>{%- if b.lab == 1 -%}<text class="qc-bv" x="{{ b.cx }}" y="{{ b.y | minus: 5 }}" text-anchor="middle">{{ b.v }}</text>{%- endif -%}{%- endfor -%}
+        <line class="qc-avg" x1="{{ tk.padl }}" x2="{{ tk.w }}" y1="{{ tk.avg }}" y2="{{ tk.avg }}"/>
+        {%- if tk.h > 100 -%}<g transform="translate({{ tk.w | minus: 70 }},{{ tk.avg | minus: 12 }})"><rect class="qc-avgbox" width="64" height="24" rx="3"/><text class="qc-avgt" x="32" y="17.5" text-anchor="middle">avg {{ tk.avgv }}</text></g>{%- endif -%}
+      </svg>
+      {%- endfor -%}
+    </div></fieldset>
+    <div class="qc-right">
+      <div class="qc-tabs"><span class="qc-tab qc-t">Rides <span class="qc-s">{{ qc.open }}</span></span></div>
+      <div class="qc-page qc-list qc-grow">
+      {%- for r in qc.top limit: 16 -%}
+      <div class="qc-row qc-row--{{ r.heat }}{% if r.rank == 1 %} qc-row--sel{% endif %}{% if forloop.index > 99 %} qc-pxonly{% elsif forloop.index > 12 %} qc-xonly{% endif %}">
+        <span class="qc-rn qc-clip qc-grow">{{ r.n }}</span>
+        <span class="qc-qbox">{%- if r.q > 0 -%}{%- assign qn = r.q | at_most: 5 -%}{%- assign qw = qn | times: 14 -%}<svg class="qc-q" viewBox="0 0 {{ qw }} 17">{%- for i in (1..qn) -%}{%- assign gi = i | times: 3 | plus: r.rank | modulo: 8 | plus: 1 -%}<use href="#qc-g{{ gi }}" x="{{ i | minus: 1 | times: 14 }}"/>{%- endfor -%}</svg>{%- else -%}<span class="qc-s">walk-on</span>{%- endif -%}</span>
+        <span class="qc-min">{{ r.w }}</span>
+      </div>
+      {%- endfor -%}
+    </div></div>
+      </div>
+    </div>
+  </div>
+</div>
+{%- else -%}
+<div class="layout layout--col layout--stretch-x qc">{{ empty_screen }}</div>
+{%- endif -%}
