@@ -59,9 +59,9 @@
 
 {%- comment -%} Crowd level and the day as framework progress bars. {%- endcomment -%}
 {%- capture crowd_bar -%}
-<div class="progress-dots w--full">
+<div class="progress-bar progress-bar--large w--full">
   <div class="content"><span class="label lg:label--large">Crowd: {{ qc.level }}</span><span class="label lg:label--large">{{ qc.open }}/{{ qc.total }} rides open</span></div>
-  <div class="track">{%- for i in (1..10) -%}<div class="dot{% if i <= qc.seg %} dot--filled{% endif %}"></div>{%- endfor -%}</div>
+  <div class="track"><div class="fill" style="width: {{ qc.seg | times: 10 }}%"></div></div>
 </div>
 {%- endcapture -%}
 {%- capture day_bar -%}
