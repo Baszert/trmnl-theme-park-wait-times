@@ -3,7 +3,6 @@
 <div class="flex flex--col flex--stretch-x gap--small w--full h--full">
   <div class="flex flex--row flex--between flex--center-y w--full">
     {{ avg_item }}
-    <span class="label lg:label--large">{{ qc.open }}/{{ qc.total }} open</span>
   </div>
   {{ crowd_bar }}
   <div class="grow w--full">{{ rides_table | replace: 'class="table ', 'class="table table--small table--condensed lg:table--base ' }}</div>

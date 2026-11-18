@@ -59,11 +59,14 @@ function transform(input) {
         heat: r.w >= 45 ? 'hot' : r.w >= 20 ? 'warm' : 'cool' };
     });
 
+    // The tip: the open ride with the shortest line right now (a walk-on wins).
+    var low = byWait.length ? byWait[byWait.length - 1] : null;
+    var tip = low ? { n: low.n, w: low.w } : null;
     // The day bar: opening to closing with a mark for now.
     var day = null;
     if (hours && hours.open && hours.day) day = hours.day;
     return { qc: { status: status, reason: reason, closes: hours && hours.open ? hours.closes : '', opens: hours && !hours.open ? hours.opens : '', now: Math.round((input.__now || Date.now()) / 1000), updated: upd, open: open.length, total: all.length, down: all.length - open.length,
-      avg: Math.round(avg), max: max, level: level, seg: seg, thought: thought, top: top, day: day, walkons: open.filter(function (r) { return !r.w; }).length } };
+      avg: Math.round(avg), max: max, level: level, seg: seg, thought: thought, top: top, tip: tip, day: day, walkons: open.filter(function (r) { return !r.w; }).length } };
   } catch (err) {
     return { qc: { status: 'offline', error: String(err), top: [], now: Math.round(Date.now() / 1000) } };
   }

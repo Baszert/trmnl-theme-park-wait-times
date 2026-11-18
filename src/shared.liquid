@@ -10,6 +10,11 @@
   .qd { fill: var(--qc-d, url(#qcg-d)); } .qg { fill: var(--qc-g, url(#qcg-g)); } .ql { fill: var(--qc-l, url(#qcg-l)); }
   .qpd { fill: var(--qc-d, url(#qcp-d)); } .qpg { fill: var(--qc-g, url(#qcp-g)); } .qpl { fill: var(--qc-l, url(#qcp-l)); }
   .screen--4bit { --qc-d: #4a4a4a; --qc-g: #8c8c8c; --qc-l: #cfcfcf; }
+  /* Speech bubble: the framework outline plus a little tail pointing at the guest. */
+  .qc-say { --b: 2px; position: relative; background: #fff; border: var(--b) solid #000; border-radius: 8px; }
+  .screen--lg .qc-say { --b: 3px; border-radius: 12px; }
+  .qc-say::before { content: ""; position: absolute; left: calc(-6px - var(--b)); top: 50%; width: 10px; height: 10px; margin-top: -5px; background: #fff; border-left: var(--b) solid #000; border-bottom: var(--b) solid #000; transform: rotate(45deg); }
+  .screen--lg .qc-say::before { left: -11px; width: 14px; height: 14px; margin-top: -7px; }
 </style>
 {%- assign off = trmnl.user.utc_offset | default: 0 -%}
 {%- assign park_raw = trmnl.plugin_settings.custom_fields_values.park | default: "160~Efteling~30713cf6-69a9-47c9-a505-52bb965f01be" -%}
@@ -32,7 +37,7 @@
 
 {%- comment -%} The rides, longest queue first. The framework hides the rows that do not fit and adds "and X more". {%- endcomment -%}
 {%- capture rides_table -%}
-<table class="table w--full" data-table-limit="true">
+<table class="table w--full" data-table-limit="true" data-table-overflow-counter="false">
   <thead>
     <tr>
       <th><span class="title title--small lg:title">Ride</span></th>
@@ -54,9 +59,9 @@
 
 {%- comment -%} Crowd level and the day as framework progress bars. {%- endcomment -%}
 {%- capture crowd_bar -%}
-<div class="progress-bar lg:progress-bar--large w--full">
-  <div class="content"><span class="label lg:label--large">Crowd</span><span class="label lg:label--large">{{ qc.level }}</span></div>
-  <div class="track"><div class="fill" style="width: {{ qc.seg | times: 10 }}%"></div></div>
+<div class="progress-dots w--full">
+  <div class="content"><span class="label lg:label--large">Crowd: {{ qc.level }}</span><span class="label lg:label--large">{{ qc.open }}/{{ qc.total }} rides open</span></div>
+  <div class="track">{%- for i in (1..10) -%}<div class="dot{% if i <= qc.seg %} dot--filled{% endif %}"></div>{%- endfor -%}</div>
 </div>
 {%- endcapture -%}
 {%- capture day_bar -%}
@@ -77,6 +82,25 @@
 </div>
 {%- endcapture -%}
 
+{%- comment -%} The shortest line in the park right now. {%- endcomment -%}
+{%- capture tip_item -%}
+{%- if qc.tip -%}
+<div class="item">
+  <div class="meta"></div>
+  <div class="content">
+    <span class="label label--gray lg:label--large">Shortest line now</span>
+    <span class="title title--small lg:title" data-clamp="1">{{ qc.tip.n }}</span>
+    <span class="label lg:label--large">{% if qc.tip.w == 0 %}Walk right on{% else %}{{ qc.tip.w }} min wait{% endif %}</span>
+  </div>
+</div>
+{%- endif -%}
+{%- endcapture -%}
+
+{%- comment -%} A guest in the line says what they think, in a speech bubble. {%- endcomment -%}
+{%- capture guest_says -%}
+<div class="flex flex--row flex--left flex--center-y gap w--full">{{ guest }}<div class="qc-say grow p--2 lg:p--3"><span class="description lg:description--large" data-clamp="3">{{ qc.thought }}</span></div></div>
+{%- endcapture -%}
+
 {%- comment -%} Closed or offline: the gate stays shut. {%- endcomment -%}
 {%- capture empty_screen -%}
 <div class="layout layout--col layout--center gap--medium">
@@ -88,7 +112,7 @@
   <span class="title lg:title--large text--center">Lost signal</span>
   <span class="description lg:description--large text--center" data-clamp="3">The queue board did not answer. Trying again on the next refresh.</span>
   {%- endif -%}
-  <div class="flex flex--row flex--center-y gap--small">{{ guest }}<span class="label lg:label--large">{% if qc.status == "closed" %}See you at opening time!{% else %}The operator went for coffee...{% endif %}</span></div>
+  <div class="flex flex--row flex--center-y gap">{{ guest }}<div class="qc-say p--2 lg:p--3"><span class="label lg:label--large">{% if qc.status == "closed" %}See you at opening time!{% else %}The operator went for coffee...{% endif %}</span></div></div>
 </div>
 {{ title_bar }}
 {%- endcapture -%}

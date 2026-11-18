@@ -5,9 +5,9 @@
       {{ avg_item }}
       {{ crowd_bar }}
       {{ day_bar }}
-      <span class="label lg:label--large">{{ qc.open }} of {{ qc.total }} rides open · {{ upd_l | date: "%H:%M" }}</span>
       <div class="divider"></div>
-      <div class="flex flex--row flex--left flex--top gap--small">{{ guest }}<span class="description lg:description--large" data-clamp="4">"{{ qc.thought }}"</span></div>
+      {{ tip_item }}
+      {{ guest_says }}
     </div>
     <div class="grow">{{ rides_table }}</div>
   </div>
