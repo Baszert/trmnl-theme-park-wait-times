@@ -4,6 +4,7 @@
     <div class="w--64 lg:w--80 portrait:w--full no-shrink flex flex--col flex--stretch-x gap--small">
       {{ avg_item | replace: 'value--xlarge lg:value--xxlarge', 'value--large lg:value--xlarge' }}
       {{ crowd_bar }}
+      <div class="hidden lg:visible w--full">{{ day_bar }}</div>
     </div>
     <div class="grow">{{ rides_table | replace: 'class="table ', 'class="table table--small table--condensed lg:table--base ' }}</div>
   </div>

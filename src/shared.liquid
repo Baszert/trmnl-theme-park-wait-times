@@ -40,16 +40,16 @@
 <table class="table w--full" data-table-limit="true" data-table-overflow-counter="false">
   <thead>
     <tr>
-      <th><span class="title title--small lg:title">Ride</span></th>
-      <th><span class="title title--small lg:title">Queue</span></th>
-      <th class="text--right"><span class="title title--small lg:title">Min</span></th>
+      <th><span class="title title--small lg:title--base">Ride</span></th>
+      <th><span class="title title--small lg:title--base">Queue</span></th>
+      <th class="text--right"><span class="title title--small lg:title--base">Min</span></th>
     </tr>
   </thead>
   <tbody>
     {%- for r in qc.top -%}
     <tr>
       <td><span class="label lg:label--large" data-clamp="1">{{ r.n }}</span></td>
-      <td>{%- if r.q > 0 -%}<span class="flex flex--row flex--left gap--none">{%- for i in (1..r.q) -%}{%- assign gi = i | times: 3 | plus: r.rank | modulo: 8 | plus: 1 -%}<svg class="w--3 h--4 lg:w--5 lg:h--6 no-shrink" viewBox="0 0 13 17"><use href="#qc-g{{ gi }}"/></svg>{%- endfor -%}</span>{%- else -%}<span class="label label--small lg:label">walk-on</span>{%- endif -%}</td>
+      <td>{%- if r.q > 0 -%}<span class="flex flex--row flex--left gap--none">{%- for i in (1..r.q) -%}{%- assign gi = i | times: 3 | plus: r.rank | modulo: 8 | plus: 1 -%}<svg class="w--3 h--4 lg:w--5 lg:h--6 no-shrink" viewBox="0 0 13 17"><use href="#qc-g{{ gi }}"/></svg>{%- endfor -%}</span>{%- else -%}<span class="label label--small lg:label--base">walk-on</span>{%- endif -%}</td>
       <td class="text--right"><span class="label lg:label--large value--tnums{% if r.heat == 'hot' %} label--inverted{% elsif r.heat == 'warm' %} label--outline{% endif %}">{{ r.w }}</span></td>
     </tr>
     {%- endfor -%}
@@ -89,7 +89,7 @@
   <div class="meta"></div>
   <div class="content">
     <span class="label label--gray lg:label--large">Shortest line now</span>
-    <span class="title title--small lg:title" data-clamp="1">{{ qc.tip.n }}</span>
+    <span class="title title--small lg:title--base" data-clamp="1">{{ qc.tip.n }}</span>
     <span class="label lg:label--large">{% if qc.tip.w == 0 %}Walk right on{% else %}{{ qc.tip.w }} min wait{% endif %}</span>
   </div>
 </div>
@@ -98,7 +98,7 @@
 
 {%- comment -%} A guest in the line says what they think, in a speech bubble. {%- endcomment -%}
 {%- capture guest_says -%}
-<div class="flex flex--row flex--left flex--center-y gap w--full">{{ guest }}<div class="qc-say grow p--2 lg:p--3"><span class="description lg:description--large" data-clamp="3">{{ qc.thought }}</span></div></div>
+<div class="flex flex--row flex--left flex--center-y gap w--full">{{ guest }}<div class="qc-say grow p--2 lg:p--3"><span class="description lg:description--xlarge" data-clamp="3">{{ qc.thought }}</span></div></div>
 {%- endcapture -%}
 
 {%- comment -%} Closed or offline: the gate stays shut. {%- endcomment -%}

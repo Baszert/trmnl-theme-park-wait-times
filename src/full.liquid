@@ -2,7 +2,7 @@
 <div class="layout layout--col layout--stretch">
   <div class="flex flex--row flex--stretch portrait:flex--col portrait:flex--stretch gap--large w--full h--full">
     <div class="w--64 lg:w--80 portrait:w--full no-shrink flex flex--col flex--stretch-x gap--medium">
-      {{ avg_item }}
+      {{ avg_item | replace: 'lg:value--xxlarge', 'lg:value--xxxlarge' }}
       {{ crowd_bar }}
       {{ day_bar }}
       <div class="divider"></div>

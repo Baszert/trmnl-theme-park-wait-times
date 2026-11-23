@@ -5,10 +5,10 @@
     <span class="title lg:title--large">{{ qc.avg }} min avg</span>
     <span class="label lg:label--large">{{ qc.level }}</span>
   </div>
-  <div class="grow w--full">{{ rides_table | replace: 'class="table ', 'class="table table--small table--condensed lg:table--base ' }}</div>
+  <div class="grow w--full">{{ rides_table | replace: 'class="table ', 'class="table table--small table--condensed lg:table--base ' | replace: 'lg:label--large" data-clamp', 'lg:label--large lg:portrait:label--base" data-clamp' }}</div>
 </div>
 </div>
-{{ title_bar }}
+{{ title_bar | replace: 'Powered by Queue-Times.com', 'Queue-Times.com' }}
 {%- else -%}
 {{ empty_screen }}
 {%- endif -%}
